@@ -16,10 +16,10 @@ namespace OpenWrksCodeTestApi.Business
             _bankFactory = bankFactory;
         }
 
-        public async Task<IEnumerable<Transaction>> GetTransactions(string userId, string accountNumber)
+        public async Task<IEnumerable<Transaction>> GetTransactionsAsync(string userId, string accountNumber)
         {
             // Make sure the account belongs to the user.
-            var foundAccount = await _accountsService.GetAccount(userId, accountNumber, false);
+            var foundAccount = await _accountsService.GetAccountAsync(userId, accountNumber, false);
 
             if (foundAccount == null)
             {

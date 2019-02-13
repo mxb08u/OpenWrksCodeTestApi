@@ -36,7 +36,7 @@ namespace OpenWrksCodeTestApi.Controllers
         [Route("{accountNumber}")]
         public async Task<ActionResult<UserAccountViewModel>> Get(string userId, string accountNumber)
         {
-            var accounts = await _accountsService.GetAccount(userId, accountNumber, true);
+            var accounts = await _accountsService.GetAccountAsync(userId, accountNumber, true);
 
             var mappedAccounts = _mapper.Map<UserAccountViewModel>(accounts);
 

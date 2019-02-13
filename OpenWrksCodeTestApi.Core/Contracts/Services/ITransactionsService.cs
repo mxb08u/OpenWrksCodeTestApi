@@ -6,6 +6,6 @@ namespace OpenWrksCodeTestApi.Core.Contracts.Services
 {
     public interface ITransactionsService
     {
-        Task<IEnumerable<Transaction>> GetTransactions(string userId, string accountNumber);
+        Task<IEnumerable<Transaction>> GetTransactionsAsync(string userId, string accountNumber);
     }
 }

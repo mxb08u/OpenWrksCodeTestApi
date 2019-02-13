@@ -20,13 +20,13 @@ namespace OpenWrksCodeTestApi.Business.Tests
             var accountsServiceMock = new Mock<IAccountsService>();
             var bankFactoryMock = new Mock<IBankFactory>();
 
-            accountsServiceMock.Setup(x => x.GetAccount(It.IsAny<string>(), It.IsAny<string>(), false)).Returns(Task.FromResult((UserAccount)null));
+            accountsServiceMock.Setup(x => x.GetAccountAsync(It.IsAny<string>(), It.IsAny<string>(), false)).Returns(Task.FromResult((UserAccount)null));
 
             var transactionsService = new TransactionsService(accountsServiceMock.Object, bankFactoryMock.Object);
 
             try
             {
-                var transactions = transactionsService.GetTransactions("123", "123").Result;
+                var transactions = transactionsService.GetTransactionsAsync("123", "123").Result;
             }
             catch (AggregateException agg)
             {
@@ -44,12 +44,12 @@ namespace OpenWrksCodeTestApi.Business.Tests
             var bankFactoryMock = new Mock<IBankFactory>();
             var fairwayMock = new Mock<IThirdPartyBankApi>();
 
-            accountsServiceMock.Setup(x => x.GetAccount(It.IsAny<string>(), It.IsAny<string>(), false)).Returns(Task.FromResult(new UserAccount { BankName = "fairways" }));
+            accountsServiceMock.Setup(x => x.GetAccountAsync(It.IsAny<string>(), It.IsAny<string>(), false)).Returns(Task.FromResult(new UserAccount { BankName = "fairways" }));
             bankFactoryMock.Setup(x => x.Create(It.IsAny<string>())).Returns(fairwayMock.Object);
             fairwayMock.Setup(x => x.GetTransactionsAsync(It.IsAny<string>())).Returns(Task.FromResult<IEnumerable<Transaction>>(new List<Transaction>()));
 
             var transactionsService = new TransactionsService(accountsServiceMock.Object, bankFactoryMock.Object);
-            var transactions = transactionsService.GetTransactions("123", "123").Result;
+            var transactions = transactionsService.GetTransactionsAsync("123", "123").Result;
 
             Assert.IsNotNull(transactions);
         }

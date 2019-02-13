@@ -26,9 +26,11 @@ namespace OpenWrksCodeTestApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TransactionsViewModel>>> Get(string userId, string accountNumber)
         {
-            var transactions = await _transactionsService.GetTransactions(userId, accountNumber);
+            var transactions = await _transactionsService.GetTransactionsAsync(userId, accountNumber);
 
-            return Ok(transactions);
+            var mappedTransactions = _mapper.Map<IEnumerable<TransactionsViewModel>>(transactions);
+
+            return Ok(mappedTransactions);
         }
     }
 }
