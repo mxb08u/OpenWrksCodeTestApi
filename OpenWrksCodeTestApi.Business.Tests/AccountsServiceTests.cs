@@ -21,27 +21,26 @@ namespace OpenWrksCodeTestApi.Business.Tests
             var bankFactory = new Mock<IBankFactory>();
             var fairwayMock = new Mock<IThirdPartyBankApi>();
 
-            var testAccounts = new List<UserAccount>();
-            testAccounts.Add(new UserAccount
+            var testAccounts = new List<UserAccount>
             {
-                BankName = "Fairway",
-                UserId = "test-user-id",
-                AccountNumber = "12341234"
-            });
+                new UserAccount
+                {
+                    BankName = "Fairway",
+                    UserId = "test-user-id",
+                    AccountNumber = "12341234"
+                }
+            };
 
             mockUserRepo.Setup(x => x.GetAllForUser(It.IsAny<string>())).Returns(testAccounts);
 
             bankFactory.Setup(x => x.Create("Fairway")).Returns(fairwayMock.Object);
 
-            fairwayMock.Setup(x => x.LookupAccountInfo("12341234")).Returns(Task.FromResult("some json"));
-            var userAccountResult = new UserAccount
+            fairwayMock.Setup(x => x.GetAccountDetailsAsync("12341234")).Returns(Task.FromResult(new UserAccount
             {
                 AccountName = "Current account",
                 AccountNumber = "12341234"
-            };
-
-            fairwayMock.Setup(x => x.DeserialiseJson(It.IsAny<string>())).Returns(userAccountResult);
-
+            }));
+            
             var accountsService = new AccountsService(mockUserRepo.Object, bankFactory.Object);
             var accounts = accountsService.GetAccounts("test-user-id");
 

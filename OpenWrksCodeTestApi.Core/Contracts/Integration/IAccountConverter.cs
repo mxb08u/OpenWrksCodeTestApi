@@ -4,6 +4,6 @@ namespace OpenWrksCodeTestApi.Core.Contracts.Integration
 {
     public interface IAccountConverter
     {
-        UserAccount ToUserAccount();
+        UserAccount Convert();
     }
 }

@@ -57,11 +57,10 @@ namespace OpenWrksCodeTestApi.Business
         {
             var bankApi = _bankingFactory.Create(account.BankName);
 
-            var jsonResult = await bankApi.LookupAccountInfo(account.AccountNumber);
-            var userAccountResult = bankApi.DeserialiseJson(jsonResult);
+            var userAccountResult = await bankApi.GetAccountDetailsAsync(account.AccountNumber);
 
             // *** Decorate *** //
-            // Todo: Do this generically?
+            // Todo: Do this generically and gracefully?
             userAccountResult.BankName = account.BankName;
             userAccountResult.UserId = account.UserId;
 

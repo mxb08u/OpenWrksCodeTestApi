@@ -24,7 +24,7 @@ namespace OpenWrksCodeTestApi.Business.Integration.BizifiBank.Models
         [JsonProperty(PropertyName = "overdraft")]
         public double Overdraft { get; set; }
 
-        public UserAccount ToUserAccount()
+        public UserAccount Convert()
         {
             var userAccount = new UserAccount
             {

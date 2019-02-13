@@ -8,7 +8,7 @@ namespace OpenWrksCodeTestApi.Business.Integration.FairwayBank.Models
         public string Name { get; set; }
         public AccountIdentifierViewModel Identifier { get; set; }
 
-        public UserAccount ToUserAccount()
+        public UserAccount Convert()
         {
             var userAccount = new UserAccount
             {

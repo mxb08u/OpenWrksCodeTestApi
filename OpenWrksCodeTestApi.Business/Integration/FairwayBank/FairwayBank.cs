@@ -12,7 +12,7 @@ namespace OpenWrksCodeTestApi.Business.Integration.FairwayBank
     public class FairwayBank : IThirdPartyBankApi
     {
         private const string Host = "http://fairwaybank-bizfitech.azurewebsites.net/api";
-        public async Task<string> LookupAccountInfo(string accountNumber)
+        public async Task<UserAccount> GetAccountDetailsAsync(string accountNumber)
         {
             var url = $"{Host}/v1/accounts/{accountNumber}";
             
@@ -21,20 +21,15 @@ namespace OpenWrksCodeTestApi.Business.Integration.FairwayBank
 
             if (response.IsSuccessStatusCode)
             {
-                return await response.Content.ReadAsStringAsync();
+                var jsonResult = await response.Content.ReadAsStringAsync();
+                var accountResult = JsonConvert.DeserializeObject<Account>(jsonResult);
+                return accountResult.Convert();
             }
-
-            return string.Empty;
-        }
-
-        //TODO: write this out.
-        public UserAccount DeserialiseJson(string json)
-        {
-            var account = JsonConvert.DeserializeObject<Account>(json);
-
-            var userAccount = account.ToUserAccount();
-
-            return userAccount;
+            else
+            {
+                //TODO: what do we do if its not a response success?
+                return null;
+            }
         }
 
         public async Task<IEnumerable<Core.DataModels.BankingContext.Transaction>> GetTransactionsAsync(string accountNumber)
