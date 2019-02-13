@@ -15,9 +15,9 @@ namespace OpenWrksCodeTestApi.Business
             _userRepository = userRepository;
         }
 
-        public UserAccount GetUser(string accountNumber)
+        public IEnumerable<UserAccount> GetUsers(string userId)
         {
-            return _userRepository.GetUser(accountNumber);
+            return _userRepository.GetUsers(userId);
         }
 
         public IEnumerable<UserAccount> GetAll()
@@ -27,9 +27,9 @@ namespace OpenWrksCodeTestApi.Business
 
         public UserAccount CreateUser(string bankName, string accountNumber)
         {
-            var foundUser = _userRepository.GetUser(accountNumber);
+            var foundAccountNumber = _userRepository.CheckAccountNumberIsUnique(accountNumber);
 
-            if (foundUser != null)
+            if (foundAccountNumber)
             {
                 throw new NotUniqueException($"Cannot create a user with account number: {accountNumber} as it already exists for another user");
             }

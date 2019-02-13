@@ -5,7 +5,8 @@ namespace OpenWrksCodeTestApi.Core.Contracts.Repositories
 {
     public interface IUserRepository
     {
-        UserAccount GetUser(string accountNumber);
+        bool CheckAccountNumberIsUnique(string accountNumber);
+        IEnumerable<UserAccount> GetUsers(string userId);
         IEnumerable<UserAccount> GetAll();
         IEnumerable<UserAccount> GetAllForUser(string userId);
         UserAccount Create(string id, string bankName, string accountNumber);

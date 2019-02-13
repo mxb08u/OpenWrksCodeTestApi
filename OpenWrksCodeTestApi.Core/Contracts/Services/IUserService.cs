@@ -6,7 +6,7 @@ namespace OpenWrksCodeTestApi.Core.Contracts.Services
     public interface IUserService
     {
         IEnumerable<UserAccount> GetAll();
-        UserAccount GetUser(string userId);
+        IEnumerable<UserAccount> GetUsers(string userId);
         UserAccount CreateUser(string bankName, string accountNumber);
     }
 }

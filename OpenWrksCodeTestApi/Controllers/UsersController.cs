@@ -6,6 +6,7 @@ using OpenWrksCodeTestApi.Core.DataModels.BankingContext;
 using OpenWrksCodeTestApi.Core.Exceptions;
 using OpenWrksCodeTestApi.ViewModels;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OpenWrksCodeTestApi.Controllers
 {
@@ -29,11 +30,11 @@ namespace OpenWrksCodeTestApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult<IEnumerable<UserAccountViewModel>> Get()
+        public ActionResult<IEnumerable<UserViewModel>> Get()
         {
             var allDataUsers = _userService.GetAll();
 
-            var allMappedUsers = _mapper.Map<IEnumerable<UserAccountViewModel>>(allDataUsers);
+            var allMappedUsers = _mapper.Map<IEnumerable<UserViewModel>>(allDataUsers);
             
             return Ok(allMappedUsers);
         }
@@ -44,22 +45,22 @@ namespace OpenWrksCodeTestApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("{userId}")]
-        public ActionResult<UserAccountViewModel> Get(string userId)
+        public ActionResult<IEnumerable<UserViewModel>> Get(string userId)
         {
-            var user = _userService.GetUser(userId);
+            var users = _userService.GetUsers(userId);
 
-            if (user == null)
+            if (users == null || !users.Any())
             {
                 return NotFound();
             }
 
-            var mappedUser = _mapper.Map<UserAccountViewModel>(user);
+            var mappedUser = _mapper.Map<IEnumerable<UserViewModel>>(users);
 
             return Ok(mappedUser);
         }
 
         [HttpPost]
-        public ActionResult<UserAccountViewModel> CreateUser(UserAccountViewModel user)
+        public ActionResult<UserViewModel> CreateUser(UserViewModel user)
         {
             UserAccount createdUser = null;
             try

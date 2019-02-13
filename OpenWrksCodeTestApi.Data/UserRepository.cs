@@ -14,6 +14,11 @@ namespace OpenWrksCodeTestApi.Data
             _bankingContext = bankingContext;
         }
 
+        public bool CheckAccountNumberIsUnique(string accountNumber)
+        {
+            return !_bankingContext.Users.Any(x => x.AccountNumber == accountNumber);
+        }
+
         public UserAccount Create(string userId, string bankName, string accountNumber)
         {
             var userAccount = new UserAccount { UserId = userId, BankName = bankName, AccountNumber = accountNumber };
@@ -33,9 +38,9 @@ namespace OpenWrksCodeTestApi.Data
             return _bankingContext.Users.Where(x => x.UserId == userId);
         }
 
-        public UserAccount GetUser(string accountNumber)
+        public IEnumerable<UserAccount> GetUsers(string userId)
         {
-            return _bankingContext.Users.Find(accountNumber);
+            return _bankingContext.Users.Where(x => x.UserId == userId);
         }
     }
 }
