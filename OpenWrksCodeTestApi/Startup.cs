@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -6,10 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using OpenWrksCodeTestApi.Business;
-using OpenWrksCodeTestApi.Core.Contracts;
+using OpenWrksCodeTestApi.Core.Contracts.Repositories;
+using OpenWrksCodeTestApi.Core.Contracts.Services;
 using OpenWrksCodeTestApi.Data;
 using OpenWrksCodeTestApi.Data.DbContexts;
-using System;
 using System.Text;
 
 namespace OpenWrksCodeTestApi
@@ -29,12 +30,13 @@ namespace OpenWrksCodeTestApi
         public void ConfigureServices(IServiceCollection services)
         {
             //Use an in memory DB for this example application
-            services.AddDbContext<ClientContext>(opt => opt.UseInMemoryDatabase("ApiClients"));
+            SetupDatabases(services);
+
+            services.AddAutoMapper();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            
-            services.AddScoped<IAuthRepository, AuthRepository>();
-            services.AddScoped<IAuthService, AuthService>();
+
+            RegisterDependencies(services);
 
             services.AddApiVersioning(opts =>
             {
@@ -59,6 +61,21 @@ namespace OpenWrksCodeTestApi
                     ValidateAudience = false //Ignore the audiance - don't care for this example
                 };
             });
+        }
+
+        private void SetupDatabases(IServiceCollection services)
+        {
+            services.AddDbContext<ClientContext>(opt => opt.UseInMemoryDatabase("ApiClients"));
+            services.AddDbContext<BankingContext>(opt => opt.UseInMemoryDatabase("Banking"));
+        }
+
+        private void RegisterDependencies(IServiceCollection services)
+        {
+            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IAuthService, AuthService>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

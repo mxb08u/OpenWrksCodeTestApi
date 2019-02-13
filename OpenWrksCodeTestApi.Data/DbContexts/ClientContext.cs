@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OpenWrksCodeTestApi.Core.DataModels.Auth;
+using OpenWrksCodeTestApi.Core.DataModels.ClientContext;
 using System.Linq;
 
 namespace OpenWrksCodeTestApi.Data.DbContexts

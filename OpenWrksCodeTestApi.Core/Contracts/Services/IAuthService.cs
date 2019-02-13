@@ -1,6 +1,4 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-
-namespace OpenWrksCodeTestApi.Core.Contracts
+﻿namespace OpenWrksCodeTestApi.Core.Contracts.Services
 {
     public interface IAuthService
     {

@@ -1,8 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
-using OpenWrksCodeTestApi.Core.Contracts;
-using OpenWrksCodeTestApi.Core.DataModels.Auth;
+using OpenWrksCodeTestApi.Core.Contracts.Repositories;
+using OpenWrksCodeTestApi.Core.DataModels.ClientContext;
 
 namespace OpenWrksCodeTestApi.Business.Tests
 {
@@ -28,7 +27,7 @@ namespace OpenWrksCodeTestApi.Business.Tests
         public void ValidClientInvalidSecretReturnsFalse()
         {
             var authRepoMock = new Mock<IAuthRepository>(MockBehavior.Strict);
-            authRepoMock.Setup(x => x.GetNamedClient(It.IsAny<string>())).Returns(new Core.DataModels.Auth.Client
+            authRepoMock.Setup(x => x.GetNamedClient(It.IsAny<string>())).Returns(new Client
             {
                 Username = "UnitTestClient",
                 Password = "UnitTestSecret"
@@ -51,5 +50,7 @@ namespace OpenWrksCodeTestApi.Business.Tests
 
             Assert.IsFalse(result, "Auth service authorised a client when the client should not have existed");
         }
+
+        //TODO: create user tests
     }
 }

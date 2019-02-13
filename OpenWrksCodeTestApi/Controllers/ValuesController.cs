@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace OpenWrksCodeTestApi.Controllers
 {
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/v{version:apiVersion}/values")]
     [ApiVersion("1.0")]
     [ApiController]
     [Authorize]

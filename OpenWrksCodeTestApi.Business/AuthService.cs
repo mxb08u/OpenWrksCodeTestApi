@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using OpenWrksCodeTestApi.Core.Contracts;
+﻿using Microsoft.IdentityModel.Tokens;
+using OpenWrksCodeTestApi.Core.Contracts.Repositories;
+using OpenWrksCodeTestApi.Core.Contracts.Services;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -11,7 +11,6 @@ namespace OpenWrksCodeTestApi.Business
     public class AuthService : IAuthService
     {
         private readonly IAuthRepository _clientContext;
-        private readonly string _secret;
         public AuthService(IAuthRepository clientContext)
         {
             _clientContext = clientContext;
@@ -57,9 +56,7 @@ namespace OpenWrksCodeTestApi.Business
             );
 
             ///Create te bearer token
-            string bearerToken = new JwtSecurityTokenHandler().WriteToken(jwtToken);
-
-            return bearerToken;
+            return new JwtSecurityTokenHandler().WriteToken(jwtToken);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OpenWrksCodeTestApi.Core.Contracts;
-using OpenWrksCodeTestApi.Models;
+using OpenWrksCodeTestApi.Core.Contracts.Services;
+using OpenWrksCodeTestApi.ViewModels;
 
 namespace OpenWrksCodeTestApi.Controllers
 {
@@ -20,7 +20,7 @@ namespace OpenWrksCodeTestApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(TokenCredentials tokenCredentials)
+        public IActionResult Post(TokenCredentialsViewModel tokenCredentials)
         {
             var isValid = _authService.IsValid(tokenCredentials.Username, tokenCredentials.Password);
 

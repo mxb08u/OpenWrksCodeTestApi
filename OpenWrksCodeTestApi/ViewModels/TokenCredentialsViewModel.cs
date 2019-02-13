@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OpenWrksCodeTestApi.Models
+namespace OpenWrksCodeTestApi.ViewModels
 {
-    public class TokenCredentials
+    public class TokenCredentialsViewModel
     {
         [Required]
         public string Username { get; set; }

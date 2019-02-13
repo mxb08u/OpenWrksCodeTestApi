@@ -1,5 +1,5 @@
-﻿using OpenWrksCodeTestApi.Core.Contracts;
-using OpenWrksCodeTestApi.Core.DataModels.Auth;
+﻿using OpenWrksCodeTestApi.Core.Contracts.Repositories;
+using OpenWrksCodeTestApi.Core.DataModels.ClientContext;
 using OpenWrksCodeTestApi.Data.DbContexts;
 
 namespace OpenWrksCodeTestApi.Data
