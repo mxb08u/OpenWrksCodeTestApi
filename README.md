@@ -23,6 +23,7 @@ BizfiBank - 12345679
 	- I have not added any paging - I could have done this but its extra work i don't feel is required for this example.
 	- The unit tests are not comprehensive - They are mearely examples of how i would test each thing.
 	- HATEOAS - I've not added any links to the next actions which could be done.
+	- Data Storage - I've used entity framework for demo purposes only.
 
 ### Talking points: 
 	- ThirdPartyApiException - I'm not sure this is the best way to handle this
@@ -30,7 +31,7 @@ BizfiBank - 12345679
 	- OWBank - We would simply add another bank to the factory and another integration class and everything should "just work".
 	- Unified formats - Perhaps there is a way to generically exclude null properties from the Json response?
 	- Handling exceptions at the controller level. I've done this many ways before. Here i have left it to bubble up. BadRequests or NotFound?
-
+	
 ## API Routes
 	### Users
 	- GET  http://localhost:5000/api/v1/users/ -- All users
