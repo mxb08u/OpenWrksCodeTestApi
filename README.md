@@ -31,7 +31,8 @@ BizfiBank - 12345679
 	- OWBank - We would simply add another bank to the factory and another integration class and everything should "just work".
 	- Unified formats - Perhaps there is a way to generically exclude null properties from the Json response?
 	- Handling exceptions at the controller level. I've done this many ways before. Here i have left it to bubble up. BadRequests or NotFound?
-	
+	- Controller tests - integration.
+
 ## API Routes
 	### Users
 	- GET  http://localhost:5000/api/v1/users/ -- All users
