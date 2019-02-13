@@ -18,7 +18,24 @@ namespace OpenWrksCodeTestApi.Business
             _bankingFactory = bankFactory;
         }
 
-        public IEnumerable<UserAccount> GetAccountsForUser(string userId)
+        public async Task<UserAccount> GetAccount(string userId, string accountNumber, bool includeDetails = false)
+        {
+            var foundAccount = _userRepository.GetAccountForUser(userId, accountNumber);
+
+            if(foundAccount == null)
+            {
+                return null;
+            }
+
+            if (includeDetails)
+            {
+                return await GetAccountFromProvider(foundAccount);
+            }
+
+            return foundAccount;
+        }
+
+        public IEnumerable<UserAccount> GetAccounts(string userId)
         {
             var userTasks = new List<Task<UserAccount>>();
 

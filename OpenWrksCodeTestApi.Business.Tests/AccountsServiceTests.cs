@@ -19,7 +19,7 @@ namespace OpenWrksCodeTestApi.Business.Tests
         {
             var mockUserRepo = new Mock<IUserRepository>(MockBehavior.Strict);
             var bankFactory = new Mock<IBankFactory>();
-            var fairwayMock = new Mock<IBankingLookup>();
+            var fairwayMock = new Mock<IThirdPartyBankApi>();
 
             var testAccounts = new List<UserAccount>();
             testAccounts.Add(new UserAccount
@@ -43,7 +43,7 @@ namespace OpenWrksCodeTestApi.Business.Tests
             fairwayMock.Setup(x => x.DeserialiseJson(It.IsAny<string>())).Returns(userAccountResult);
 
             var accountsService = new AccountsService(mockUserRepo.Object, bankFactory.Object);
-            var accounts = accountsService.GetAccountsForUser("test-user-id");
+            var accounts = accountsService.GetAccounts("test-user-id");
 
             Assert.IsTrue(accounts.Count() == 1, "Should have had a single account, instead we have more");
         }

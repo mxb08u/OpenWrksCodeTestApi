@@ -2,6 +2,6 @@
 {
     public interface IBankFactory
     {
-        IBankingLookup Create(string bankName);
+        IThirdPartyBankApi Create(string bankName);
     }
 }

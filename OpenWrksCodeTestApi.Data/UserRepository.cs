@@ -28,6 +28,11 @@ namespace OpenWrksCodeTestApi.Data
             return userAccount;
         }
 
+        public UserAccount GetAccountForUser(string userId, string accountNumber)
+        {
+            return _bankingContext.Users.First(x => x.UserId == userId && x.AccountNumber == accountNumber);
+        }
+
         public IEnumerable<UserAccount> GetAll()
         {
             return _bankingContext.Users;

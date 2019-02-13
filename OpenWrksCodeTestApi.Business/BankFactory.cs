@@ -7,7 +7,7 @@ namespace OpenWrksCodeTestApi.Business
 {
     public class BankFactory : IBankFactory
     {
-        public IBankingLookup Create(string bankName)
+        public IThirdPartyBankApi Create(string bankName)
         {
             bankName = bankName.ToLower();
             switch (bankName)

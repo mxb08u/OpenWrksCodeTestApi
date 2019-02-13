@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using OpenWrksCodeTestApi.Core.Contracts.Services;
 using OpenWrksCodeTestApi.ViewModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OpenWrksCodeTestApi.Controllers
 {
@@ -24,9 +25,20 @@ namespace OpenWrksCodeTestApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<UserAccountViewModel>> Get(string userId)
         {
-            var accounts = _accountsService.GetAccountsForUser(userId);
+            var accounts = _accountsService.GetAccounts(userId);
 
             var mappedAccounts = _mapper.Map<IEnumerable<UserAccountViewModel>>(accounts);
+
+            return Ok(mappedAccounts);
+        }
+
+        [HttpGet]
+        [Route("{accountNumber}")]
+        public async Task<ActionResult<UserAccountViewModel>> Get(string userId, string accountNumber)
+        {
+            var accounts = await _accountsService.GetAccount(userId, accountNumber, true);
+
+            var mappedAccounts = _mapper.Map<UserAccountViewModel>(accounts);
 
             return Ok(mappedAccounts);
         }
