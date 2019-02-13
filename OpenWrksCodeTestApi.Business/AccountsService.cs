@@ -35,6 +35,11 @@ namespace OpenWrksCodeTestApi.Business
             return foundAccount;
         }
 
+        /// <summary>
+        /// TODO: Task.WhenAll
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public IEnumerable<UserAccount> GetAccounts(string userId)
         {
             var userTasks = new List<Task<UserAccount>>();
@@ -57,7 +62,7 @@ namespace OpenWrksCodeTestApi.Business
         {
             var bankApi = _bankingFactory.Create(account.BankName);
 
-            var userAccountResult = await bankApi.GetAccountDetailsAsync(account.AccountNumber);
+            var userAccountResult = await bankApi.GetAccountAsync(account.AccountNumber);
 
             // *** Decorate *** //
             // Todo: Do this generically and gracefully?

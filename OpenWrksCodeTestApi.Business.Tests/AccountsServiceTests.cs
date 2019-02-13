@@ -35,7 +35,7 @@ namespace OpenWrksCodeTestApi.Business.Tests
 
             bankFactory.Setup(x => x.Create("Fairway")).Returns(fairwayMock.Object);
 
-            fairwayMock.Setup(x => x.GetAccountDetailsAsync("12341234")).Returns(Task.FromResult(new UserAccount
+            fairwayMock.Setup(x => x.GetAccountAsync("12341234")).Returns(Task.FromResult(new UserAccount
             {
                 AccountName = "Current account",
                 AccountNumber = "12341234"

@@ -12,10 +12,26 @@ namespace OpenWrksCodeTestApi.Business.Integration.FairwayBank
     public class FairwayBank : IThirdPartyBankApi
     {
         private const string Host = "http://fairwaybank-bizfitech.azurewebsites.net/api";
-        public async Task<UserAccount> GetAccountDetailsAsync(string accountNumber)
+        public async Task<UserAccount> GetAccountAsync(string accountNumber)
+        {
+            var accountBasicTask = GetBasicAccountAsync(accountNumber);
+            var accountDetailTask = GetAccountDetailsAsync(accountNumber);
+
+            await Task.WhenAll(accountBasicTask, accountDetailTask);
+
+            var account = accountBasicTask.Result;
+            var details = accountDetailTask.Result;
+
+            account.Balance = details.Amount;
+            account.Overdraft = details.Overdraft.Amount;
+
+            return account;
+        }
+
+        private async Task<UserAccount> GetBasicAccountAsync(string accountNumber)
         {
             var url = $"{Host}/v1/accounts/{accountNumber}";
-            
+
             var httpClient = new HttpClient();
             var response = await httpClient.GetAsync(url);
 
@@ -24,6 +40,25 @@ namespace OpenWrksCodeTestApi.Business.Integration.FairwayBank
                 var jsonResult = await response.Content.ReadAsStringAsync();
                 var accountResult = JsonConvert.DeserializeObject<Account>(jsonResult);
                 return accountResult.Convert();
+            }
+            else
+            {
+                //TODO: what do we do if its not a response success?
+                return null;
+            }
+        }
+
+        private async Task<Balance> GetAccountDetailsAsync(string accountNumber)
+        {
+            var url = $"{Host}/v1/accounts/{accountNumber}/balance";
+
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonResult = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Balance>(jsonResult);
             }
             else
             {

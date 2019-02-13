@@ -6,7 +6,7 @@ namespace OpenWrksCodeTestApi.Core.Contracts.Services
 {
     public interface IThirdPartyBankApi
     {
-        Task<UserAccount> GetAccountDetailsAsync(string accountNumber);
+        Task<UserAccount> GetAccountAsync(string accountNumber);
         Task<IEnumerable<Transaction>> GetTransactionsAsync(string accountNumber);
     }
 }

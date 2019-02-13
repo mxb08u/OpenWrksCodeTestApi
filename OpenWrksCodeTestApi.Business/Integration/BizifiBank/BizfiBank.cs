@@ -11,7 +11,7 @@ namespace OpenWrksCodeTestApi.Business.Integration.BizifiBank
     public class BizfiBank : IThirdPartyBankApi
     {
         private const string Host = "http://bizfibank-bizfitech.azurewebsites.net/api";
-        public async Task<UserAccount> GetAccountDetailsAsync(string accountNumber)
+        public async Task<UserAccount> GetAccountAsync(string accountNumber)
         {
             var url = $"{Host}/v1/accounts/{accountNumber}";
 
