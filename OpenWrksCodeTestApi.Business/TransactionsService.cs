@@ -23,7 +23,7 @@ namespace OpenWrksCodeTestApi.Business
 
             if (foundAccount == null)
             {
-                throw new MismatchException($"The user {userId} does not own account {accountNumber}");
+                return null;
             }
 
             var concreteBank = _bankFactory.Create(foundAccount.BankName);

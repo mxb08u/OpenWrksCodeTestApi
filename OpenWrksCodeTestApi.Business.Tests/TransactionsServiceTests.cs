@@ -24,17 +24,9 @@ namespace OpenWrksCodeTestApi.Business.Tests
 
             var transactionsService = new TransactionsService(accountsServiceMock.Object, bankFactoryMock.Object);
 
-            try
-            {
-                var transactions = transactionsService.GetTransactionsAsync("123", "123").Result;
-            }
-            catch (AggregateException agg)
-            {
-                Assert.IsInstanceOf<MismatchException>(agg.InnerException);
-                return;
-            }
+            var transactions = transactionsService.GetTransactionsAsync("123", "123").Result;
 
-            Assert.Fail("Expected 'MismatchException' but it was not thrown");
+            Assert.IsNull(transactions, "Transactions was not null when it should have been");
         }
 
         [Test]

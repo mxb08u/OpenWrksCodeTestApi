@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OpenWrksCodeTestApi.Core.Contracts.Services;
+using OpenWrksCodeTestApi.Core.Exceptions;
 using OpenWrksCodeTestApi.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -27,8 +28,12 @@ namespace OpenWrksCodeTestApi.Controllers
         public async Task<ActionResult<IEnumerable<TransactionsViewModel>>> Get(string userId, string accountNumber)
         {
             var transactions = await _transactionsService.GetTransactionsAsync(userId, accountNumber);
-
             var mappedTransactions = _mapper.Map<IEnumerable<TransactionsViewModel>>(transactions);
+
+            if(mappedTransactions == null)
+            {
+                return NotFound();
+            }
 
             return Ok(mappedTransactions);
         }

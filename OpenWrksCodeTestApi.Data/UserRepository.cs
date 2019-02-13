@@ -30,7 +30,7 @@ namespace OpenWrksCodeTestApi.Data
 
         public UserAccount GetAccountForUser(string userId, string accountNumber)
         {
-            return _bankingContext.Users.First(x => x.UserId == userId && x.AccountNumber == accountNumber);
+            return _bankingContext.Users.FirstOrDefault(x => x.UserId == userId && x.AccountNumber == accountNumber);
         }
 
         public IEnumerable<UserAccount> GetAll()

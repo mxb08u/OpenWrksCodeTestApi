@@ -21,12 +21,15 @@ BizfiBank - 12345679
 	- I've not added ANY logging or request tracing. I've not added it for time reasons, i would do this in a production solution.
 	- I have used automapper to interchange between internal models and external view models.
 	- I have not added any paging - I could have done this but its extra work i don't feel is required for this example.
+	- The unit tests are not comprehensive - They are mearely examples of how i would test each thing.
+	- HATEOAS - I've not added any links to the next actions which could be done.
 
 ### Talking points: 
 	- ThirdPartyApiException - I'm not sure this is the best way to handle this
 	- TransactionEnrichmentPipeline - I'm not sure what is meant by this, but i would think the TransactionsService could incorperate this.
 	- OWBank - We would simply add another bank to the factory and another integration class and everything should "just work".
 	- Unified formats - Perhaps there is a way to generically exclude null properties from the Json response?
+	- Handling exceptions at the controller level. I've done this many ways before. Here i have left it to bubble up. BadRequests or NotFound?
 
 ## API Routes
 	### Users

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using OpenWrksCodeTestApi.Core.Contracts.Services;
 using OpenWrksCodeTestApi.ViewModels;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OpenWrksCodeTestApi.Controllers
@@ -29,7 +30,12 @@ namespace OpenWrksCodeTestApi.Controllers
 
             var mappedAccounts = _mapper.Map<IEnumerable<UserAccountViewModel>>(accounts);
 
-            return Ok(mappedAccounts);
+            if (mappedAccounts.Any())
+            {
+                return Ok(mappedAccounts);
+            }
+
+            return NotFound();
         }
 
         [HttpGet]
@@ -39,6 +45,11 @@ namespace OpenWrksCodeTestApi.Controllers
             var accounts = await _accountsService.GetAccountAsync(userId, accountNumber, true);
 
             var mappedAccounts = _mapper.Map<UserAccountViewModel>(accounts);
+            
+            if(mappedAccounts == null)
+            {
+                return NotFound();
+            }
 
             return Ok(mappedAccounts);
         }
