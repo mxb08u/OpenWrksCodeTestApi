@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWrksCodeTestApi", "OpenWrksCodeTestApi\OpenWrksCodeTestApi.csproj", "{F8140E1E-8602-4A01-A601-61FF2C93EC89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenWrksCodeTestApi", "OpenWrksCodeTestApi\OpenWrksCodeTestApi.csproj", "{F8140E1E-8602-4A01-A601-61FF2C93EC89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWrksCodeTestApi.Core", "OpenWrksCodeTestApi.Core\OpenWrksCodeTestApi.Core.csproj", "{D6414D75-6C88-495A-A569-8BA24AA91902}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenWrksCodeTestApi.Core", "OpenWrksCodeTestApi.Core\OpenWrksCodeTestApi.Core.csproj", "{D6414D75-6C88-495A-A569-8BA24AA91902}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWrksCodeTestApi.Business", "OpenWrksCodeTestApi.Business\OpenWrksCodeTestApi.Business.csproj", "{0CF31AEF-8AE5-41E6-8F0A-27F4D691B002}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenWrksCodeTestApi.Business", "OpenWrksCodeTestApi.Business\OpenWrksCodeTestApi.Business.csproj", "{0CF31AEF-8AE5-41E6-8F0A-27F4D691B002}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWrksCodeTestApi.Business.Tests", "OpenWrksCodeTestApi.Business.Tests\OpenWrksCodeTestApi.Business.Tests.csproj", "{37AF2AB1-2AEB-4E89-882E-B415780EC191}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenWrksCodeTestApi.Business.Tests", "OpenWrksCodeTestApi.Business.Tests\OpenWrksCodeTestApi.Business.Tests.csproj", "{37AF2AB1-2AEB-4E89-882E-B415780EC191}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWrksCodeTestApi.Data", "OpenWrksCodeTestApi.Data\OpenWrksCodeTestApi.Data.csproj", "{E4897CD5-1349-4407-8AC7-3D0EF89727FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenWrksCodeTestApi.Data", "OpenWrksCodeTestApi.Data\OpenWrksCodeTestApi.Data.csproj", "{E4897CD5-1349-4407-8AC7-3D0EF89727FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E3BC1F4C-D056-4371-B9B7-B617E75026C6}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
