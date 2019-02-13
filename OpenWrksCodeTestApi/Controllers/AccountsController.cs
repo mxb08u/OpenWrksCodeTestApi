@@ -23,9 +23,9 @@ namespace OpenWrksCodeTestApi.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<UserAccountViewModel>> Get(string userId)
+        public async Task<ActionResult<IEnumerable<UserAccountViewModel>>> Get(string userId)
         {
-            var accounts = _accountsService.GetAccounts(userId);
+            var accounts = await _accountsService.GetAccountsAsync(userId);
 
             var mappedAccounts = _mapper.Map<IEnumerable<UserAccountViewModel>>(accounts);
 

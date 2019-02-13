@@ -42,7 +42,7 @@ namespace OpenWrksCodeTestApi.Business.Tests
             }));
             
             var accountsService = new AccountsService(mockUserRepo.Object, bankFactory.Object);
-            var accounts = accountsService.GetAccounts("test-user-id");
+            var accounts = accountsService.GetAccountsAsync("test-user-id").Result;
 
             Assert.IsTrue(accounts.Count() == 1, "Should have had a single account, instead we have more");
         }

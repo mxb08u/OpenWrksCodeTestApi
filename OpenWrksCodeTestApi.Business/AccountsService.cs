@@ -29,7 +29,7 @@ namespace OpenWrksCodeTestApi.Business
 
             if (includeDetails)
             {
-                return await GetAccountFromProvider(foundAccount);
+                return await GetAccountFromProviderAsync(foundAccount);
             }
 
             return foundAccount;
@@ -40,7 +40,7 @@ namespace OpenWrksCodeTestApi.Business
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public IEnumerable<UserAccount> GetAccounts(string userId)
+        public async Task<IEnumerable<UserAccount>> GetAccountsAsync(string userId)
         {
             var userTasks = new List<Task<UserAccount>>();
 
@@ -50,15 +50,15 @@ namespace OpenWrksCodeTestApi.Business
             //Lookup these accounts agaisnt the bank as fast as possible.
             foreach(var account in foundAccounts)
             {
-                userTasks.Add(GetAccountFromProvider(account));
+                userTasks.Add(GetAccountFromProviderAsync(account));
             }
 
-            Task.WaitAll(userTasks.ToArray());
+            await Task.WhenAll(userTasks);
 
             return userTasks.Select(x => x.Result);
         }
 
-        private async Task<UserAccount> GetAccountFromProvider(UserAccount account)
+        private async Task<UserAccount> GetAccountFromProviderAsync(UserAccount account)
         {
             var bankApi = _bankingFactory.Create(account.BankName);
 
