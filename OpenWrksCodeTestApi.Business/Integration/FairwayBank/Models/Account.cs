@@ -3,7 +3,7 @@ using OpenWrksCodeTestApi.Core.DataModels.BankingContext;
 
 namespace OpenWrksCodeTestApi.Business.Integration.FairwayBank.Models
 {
-    public class Account : IAccountConverter
+    public class Account : IConverter<UserAccount>
     {
         public string Name { get; set; }
         public AccountIdentifierViewModel Identifier { get; set; }

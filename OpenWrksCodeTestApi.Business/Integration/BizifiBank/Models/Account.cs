@@ -4,7 +4,7 @@ using OpenWrksCodeTestApi.Core.DataModels.BankingContext;
 
 namespace OpenWrksCodeTestApi.Business.Integration.BizifiBank.Models
 {
-    public class Account : IAccountConverter
+    public class Account : IConverter<UserAccount>
     {
         [JsonProperty(PropertyName = "account_name")]
         public string AccountName { get; set; }

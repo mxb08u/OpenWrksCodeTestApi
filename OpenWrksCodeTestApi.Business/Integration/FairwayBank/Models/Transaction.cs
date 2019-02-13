@@ -4,7 +4,7 @@ using System;
 
 namespace OpenWrksCodeTestApi.Business.Integration.FairwayBank.Models
 {
-    public class Transaction : ITransactionConverter
+    public class Transaction : IConverter<Core.DataModels.BankingContext.Transaction>
     {
         [JsonProperty(PropertyName = "amount")]
         public double Amount { get; set; }
