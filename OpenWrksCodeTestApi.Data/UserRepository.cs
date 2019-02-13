@@ -14,9 +14,9 @@ namespace OpenWrksCodeTestApi.Data
             _bankingContext = bankingContext;
         }
 
-        public bool CheckAccountNumberIsUnique(string accountNumber)
+        public bool FindAccountNumber(string accountNumber)
         {
-            return !_bankingContext.Users.Any(x => x.AccountNumber == accountNumber);
+            return _bankingContext.Users.Any(x => x.AccountNumber == accountNumber);
         }
 
         public UserAccount Create(string userId, string bankName, string accountNumber)

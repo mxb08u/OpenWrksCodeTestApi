@@ -50,7 +50,5 @@ namespace OpenWrksCodeTestApi.Business.Tests
 
             Assert.IsFalse(result, "Auth service authorised a client when the client should not have existed");
         }
-
-        //TODO: create user tests
     }
 }

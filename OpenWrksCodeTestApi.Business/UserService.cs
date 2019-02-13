@@ -27,7 +27,7 @@ namespace OpenWrksCodeTestApi.Business
 
         public UserAccount CreateUser(string bankName, string accountNumber)
         {
-            var foundAccountNumber = _userRepository.CheckAccountNumberIsUnique(accountNumber);
+            var foundAccountNumber = _userRepository.FindAccountNumber(accountNumber);
 
             if (foundAccountNumber)
             {

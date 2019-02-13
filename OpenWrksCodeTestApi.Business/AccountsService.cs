@@ -35,11 +35,6 @@ namespace OpenWrksCodeTestApi.Business
             return foundAccount;
         }
 
-        /// <summary>
-        /// TODO: Task.WhenAll
-        /// </summary>
-        /// <param name="userId"></param>
-        /// <returns></returns>
         public async Task<IEnumerable<UserAccount>> GetAccountsAsync(string userId)
         {
             var userTasks = new List<Task<UserAccount>>();
@@ -65,7 +60,6 @@ namespace OpenWrksCodeTestApi.Business
             var userAccountResult = await bankApi.GetAccountAsync(account.AccountNumber);
 
             // *** Decorate *** //
-            // Todo: Do this generically and gracefully?
             userAccountResult.BankName = account.BankName;
             userAccountResult.UserId = account.UserId;
 

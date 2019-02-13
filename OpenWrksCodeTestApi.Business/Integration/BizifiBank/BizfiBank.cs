@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using OpenWrksCodeTestApi.Business.Integration.BizifiBank.Models;
 using OpenWrksCodeTestApi.Core.Contracts.Services;
 using OpenWrksCodeTestApi.Core.DataModels.BankingContext;
+using OpenWrksCodeTestApi.Core.Exceptions;
 
 namespace OpenWrksCodeTestApi.Business.Integration.BizifiBank
 {
@@ -26,8 +27,7 @@ namespace OpenWrksCodeTestApi.Business.Integration.BizifiBank
             }
             else
             {
-                //TODO: what do we do if its not a response success?
-                return null;
+                throw new ThirdPartyApiException($"{url} returned {response.StatusCode}");
             }
         }
 
@@ -50,7 +50,7 @@ namespace OpenWrksCodeTestApi.Business.Integration.BizifiBank
             }
             else
             {
-                //TODO: what do we do if its not a response success?
+                throw new ThirdPartyApiException($"{url} returned {response.StatusCode}");
             }
 
             return transactions;

@@ -71,7 +71,7 @@ namespace OpenWrksCodeTestApi.Controllers
                 return BadRequest("Account number must be unique");
             }
 
-            var mappedUser = _mapper.Map<UserAccountViewModel>(createdUser);
+            var mappedUser = _mapper.Map<UserViewModel>(createdUser);
 
             return CreatedAtAction("CreateUser", mappedUser);
         }

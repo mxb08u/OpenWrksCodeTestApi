@@ -51,7 +51,7 @@ namespace OpenWrksCodeTestApi.Business.Tests
         public void CreateUserReturnsCreatedUser()
         {
             var userRepoMock = new Mock<IUserRepository>();
-            userRepoMock.Setup(x => x.CheckAccountNumberIsUnique(It.IsAny<string>())).Returns(false);
+            userRepoMock.Setup(x => x.FindAccountNumber(It.IsAny<string>())).Returns(false);
             userRepoMock.Setup(x => x.Create(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new UserAccount());
 
             var userService = new UserService(userRepoMock.Object);
@@ -59,7 +59,7 @@ namespace OpenWrksCodeTestApi.Business.Tests
 
             Assert.IsNotNull(userAccount, "user account was null when it should not have been");
 
-            userRepoMock.Verify(x => x.CheckAccountNumberIsUnique(It.IsAny<string>()), Times.Exactly(1), "Get user should have only been called once, but it was called more");
+            userRepoMock.Verify(x => x.FindAccountNumber(It.IsAny<string>()), Times.Exactly(1), "Get user should have only been called once, but it was called more");
             userRepoMock.Verify(x => x.Create(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Exactly(1), "Create user should have only been called once, but it was called more");
         }
 
@@ -67,7 +67,7 @@ namespace OpenWrksCodeTestApi.Business.Tests
         public void CreateUserFailsToCreateUserNonUniqueAccountAndThrowsException()
         {
             var userRepoMock = new Mock<IUserRepository>();
-            userRepoMock.Setup(x => x.CheckAccountNumberIsUnique(It.IsAny<string>())).Returns(true);
+            userRepoMock.Setup(x => x.FindAccountNumber(It.IsAny<string>())).Returns(true);
 
             var userService = new UserService(userRepoMock.Object);
 

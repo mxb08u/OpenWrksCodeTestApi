@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using OpenWrksCodeTestApi.Business.Integration.FairwayBank.Models;
 using OpenWrksCodeTestApi.Core.Contracts.Services;
 using OpenWrksCodeTestApi.Core.DataModels.BankingContext;
+using OpenWrksCodeTestApi.Core.Exceptions;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -43,8 +44,7 @@ namespace OpenWrksCodeTestApi.Business.Integration.FairwayBank
             }
             else
             {
-                //TODO: what do we do if its not a response success?
-                return null;
+                throw new ThirdPartyApiException($"{url} returned {response.StatusCode}");
             }
         }
 
@@ -62,8 +62,7 @@ namespace OpenWrksCodeTestApi.Business.Integration.FairwayBank
             }
             else
             {
-                //TODO: what do we do if its not a response success?
-                return null;
+                throw new ThirdPartyApiException($"{url} returned {response.StatusCode}");
             }
         }
 
@@ -86,7 +85,7 @@ namespace OpenWrksCodeTestApi.Business.Integration.FairwayBank
             }
             else
             {
-                //TODO: what do we do if its not a response success?
+                throw new ThirdPartyApiException($"{url} returned {response.StatusCode}");
             }
             
             return transactions;
