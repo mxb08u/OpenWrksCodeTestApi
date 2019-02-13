@@ -8,7 +8,8 @@ namespace OpenWrksCodeTestApi.Controllers
     /// This controller is here for development purposes. The behaviour of this controller would normally be handled by a authentication provider such as identity server or openidconnect or any other provider.
     /// It is simply here so i can secure the api with a jwt bearer token in an automated way.
     /// </summary>
-    [Route("api/token")]
+    [Route("api/v{version:apiVersion}/token")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class TokenController : ControllerBase
     {

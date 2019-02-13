@@ -32,9 +32,15 @@ namespace OpenWrksCodeTestApi
             services.AddDbContext<ClientContext>(opt => opt.UseInMemoryDatabase("ApiClients"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAuthService, AuthService>();
+
+            services.AddApiVersioning(opts =>
+            {
+                opts.ReportApiVersions = true;
+                opts.DefaultApiVersion = new ApiVersion(1, 0);
+            });
 
             services.AddAuthentication(opts =>
             {
