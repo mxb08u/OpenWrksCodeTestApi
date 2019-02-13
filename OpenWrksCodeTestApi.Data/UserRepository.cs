@@ -1,8 +1,8 @@
 ﻿using OpenWrksCodeTestApi.Core.Contracts.Repositories;
 using OpenWrksCodeTestApi.Core.DataModels.BankingContext;
 using OpenWrksCodeTestApi.Data.DbContexts;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OpenWrksCodeTestApi.Data
 {
@@ -26,6 +26,11 @@ namespace OpenWrksCodeTestApi.Data
         public IEnumerable<UserAccount> GetAll()
         {
             return _bankingContext.Users;
+        }
+
+        public IEnumerable<UserAccount> GetAllForUser(string userId)
+        {
+            return _bankingContext.Users.Where(x => x.UserId == userId);
         }
 
         public UserAccount GetUser(string accountNumber)

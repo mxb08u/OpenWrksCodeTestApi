@@ -7,6 +7,7 @@ namespace OpenWrksCodeTestApi.Core.Contracts.Repositories
     {
         UserAccount GetUser(string accountNumber);
         IEnumerable<UserAccount> GetAll();
+        IEnumerable<UserAccount> GetAllForUser(string userId);
         UserAccount Create(string id, string bankName, string accountNumber);
     }
 }

@@ -12,10 +12,4 @@ Notes:
 	- The Auth service only handles basic authentication, it does nothing with roles to handle authorization. In a production setup i would extend the code futher to do this.
 	- We use URL versioning because my experience is its easier to work with going forward. Refactoring and making changes is easier to do while avoiding breaking changes. 
 
-
-	TODO:
-	Logging
-
-
-Explicition Decisions
-	- UsersController handles both "userids" and accounts. One is not valid without the other so dispite preconseptions they are a single entity which we will called "UserAccount"
+	- The naming around accounts and users is very overloaded and could use some refactorting in the naming department for a production solution.

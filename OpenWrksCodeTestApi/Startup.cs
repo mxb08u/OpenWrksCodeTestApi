@@ -76,6 +76,9 @@ namespace OpenWrksCodeTestApi
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IAccountsService, AccountsService>();
+            services.AddScoped<IBankFactory, BankFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

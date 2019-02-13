@@ -12,7 +12,9 @@ namespace OpenWrksCodeTestApi.Data.DbContexts
             // Ensure we have some sample data to demo with.
             if (!Users.Any())
             {
-                Users.Add(new UserAccount { UserId = Guid.NewGuid().ToString(), BankName = "MattsBank", AccountNumber = "12345678" });
+                var userId = Guid.Parse("1a44cb46-5556-4788-908a-1863b1898ed0").ToString();
+                Users.Add(new UserAccount { UserId = userId, BankName = "FairWayBank", AccountNumber = "12345678" });
+                Users.Add(new UserAccount { UserId = userId, BankName = "BizfiBank", AccountNumber = "12345679" });
                 SaveChanges();
             }
 
