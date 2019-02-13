@@ -18,11 +18,13 @@ namespace OpenWrksCodeTestApi.Controllers
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
+        private readonly IBankFactory _bankFactory;
 
-        public UsersController(IMapper mapper, IUserService userService)
+        public UsersController(IMapper mapper, IUserService userService, IBankFactory bankFactory)
         {
             _mapper = mapper;
             _userService = userService;
+            _bankFactory = bankFactory;
         }
 
         /// <summary>
@@ -62,10 +64,16 @@ namespace OpenWrksCodeTestApi.Controllers
         [HttpPost]
         public ActionResult<UserViewModel> CreateUser(UserViewModel user)
         {
+            var isBankSupported = _bankFactory.IsSupported(user.BankName);
+            if (!isBankSupported)
+            {
+                return BadRequest($"{user.BankName} is not yet supported");
+            }
+
             UserAccount createdUser = null;
             try
             {
-                createdUser = _userService.CreateUser(user.BankName, user.AccountNumber);
+                createdUser = _userService.CreateUser(user.BankName, user.AccountNumber, user.UserId);
             }catch(NotUniqueException)
             {
                 return BadRequest("Account number must be unique");

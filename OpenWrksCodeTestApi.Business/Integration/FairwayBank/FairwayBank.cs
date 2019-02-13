@@ -24,7 +24,10 @@ namespace OpenWrksCodeTestApi.Business.Integration.FairwayBank
             var details = accountDetailTask.Result;
 
             account.Balance = details.Amount;
-            account.Overdraft = details.Overdraft.Amount;
+            if (details.Overdraft != null)
+            {
+                account.Overdraft = details.Overdraft.Amount;
+            }
 
             return account;
         }

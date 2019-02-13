@@ -9,8 +9,7 @@ namespace OpenWrksCodeTestApi.Business
     {
         public IThirdPartyBankApi Create(string bankName)
         {
-            bankName = bankName.ToLower();
-            switch (bankName)
+            switch (bankName.ToLower())
             {
                 case "bizfibank":
                     return new BizfiBank();
@@ -20,6 +19,18 @@ namespace OpenWrksCodeTestApi.Business
             }
 
             throw new NotImplementedException(bankName);
+        }
+
+        public bool IsSupported(string bankName)
+        {
+            switch (bankName.ToLower())
+            {
+                case "bizfibank":
+                case "fairwaybank":
+                    return true;
+            }
+
+            return false;
         }
     }
 }

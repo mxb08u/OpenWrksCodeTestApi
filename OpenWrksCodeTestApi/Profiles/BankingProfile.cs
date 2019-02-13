@@ -9,6 +9,7 @@ namespace OpenWrksCodeTestApi.Profiles
         public BankingProfile()
         {
             CreateMap<UserAccountViewModel, UserAccount>();
+            CreateMap<TransactionsViewModel, Transaction>();
         }
     }
 }

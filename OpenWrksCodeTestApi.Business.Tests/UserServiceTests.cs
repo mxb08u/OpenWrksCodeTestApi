@@ -55,7 +55,7 @@ namespace OpenWrksCodeTestApi.Business.Tests
             userRepoMock.Setup(x => x.Create(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(new UserAccount());
 
             var userService = new UserService(userRepoMock.Object);
-            var userAccount = userService.CreateUser("TestBank", "12345678");
+            var userAccount = userService.CreateUser("TestBank", "12345678", "123");
 
             Assert.IsNotNull(userAccount, "user account was null when it should not have been");
 
@@ -73,7 +73,7 @@ namespace OpenWrksCodeTestApi.Business.Tests
 
             try
             {
-                var userAccount = userService.CreateUser("TestBank", "12345678");
+                var userAccount = userService.CreateUser("TestBank", "12345678", "123");
             }catch(NotUniqueException)
             {
                 Assert.Pass();

@@ -25,7 +25,7 @@ namespace OpenWrksCodeTestApi.Business
             return _userRepository.GetAll();
         }
 
-        public UserAccount CreateUser(string bankName, string accountNumber)
+        public UserAccount CreateUser(string bankName, string accountNumber, string userId)
         {
             var foundAccountNumber = _userRepository.FindAccountNumber(accountNumber);
 
@@ -34,7 +34,10 @@ namespace OpenWrksCodeTestApi.Business
                 throw new NotUniqueException($"Cannot create a user with account number: {accountNumber} as it already exists for another user");
             }
 
-            var userId = Guid.NewGuid().ToString();
+            if (string.IsNullOrEmpty(userId))
+            {
+                userId = Guid.NewGuid().ToString();
+            }
 
             return _userRepository.Create(userId, bankName, accountNumber);
         }
